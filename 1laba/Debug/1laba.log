@@ -1,0 +1,8 @@
+﻿  Source.cpp
+C:\Users\ZeFFI\Desktop\программирование\Аисд\1laba\list.h(135,13): warning C4018: >: несоответствие типов со знаком и без знака
+C:\Users\ZeFFI\Desktop\программирование\Аисд\1laba\list.h(176,12): warning C4018: >: несоответствие типов со знаком и без знака
+C:\Users\ZeFFI\Desktop\программирование\Аисд\1laba\list.h(185,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\ZeFFI\Desktop\программирование\Аисд\1laba\list.h(190,21): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\ZeFFI\Desktop\программирование\Аисд\1laba\list.h(216,12): warning C4018: >: несоответствие типов со знаком и без знака
+C:\Users\ZeFFI\Desktop\программирование\Аисд\1laba\list.h(217,20): warning C4018: <: несоответствие типов со знаком и без знака
+  1laba.vcxproj -> C:\Users\ZeFFI\Desktop\программирование\Аисд\1laba\Debug\1laba.exe
