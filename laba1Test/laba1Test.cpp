@@ -43,7 +43,12 @@ namespace laba1Test
 		TEST_METHOD(PopBackEmptyTest)
 		{
 			List lst;
-			lst.pop_back();
+			try {
+				lst.pop_back();
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "List is Empty!");
+			}
 			Assert::IsTrue((lst.GetSize() == 0)&&(lst.at(0)==NULL));
 		}
 		TEST_METHOD(PopBackOneElemTest)
@@ -64,7 +69,12 @@ namespace laba1Test
 		TEST_METHOD(PopFrontEmptyTest)
 		{
 			List lst;
-			lst.pop_front();
+			try {
+				lst.pop_front();
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "List is Empty!");
+			}
 			Assert::IsTrue((lst.GetSize() == 0) && (lst.at(0) == NULL));
 		}
 		TEST_METHOD(PopFrontOneElemTest)
@@ -84,12 +94,22 @@ namespace laba1Test
 		}
 		TEST_METHOD(InsertEmptySecondIndexTest) {
 			List lst;
-			lst.insert(2, 1);
+			try {
+				lst.insert(2, 1);
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "Wrong Index!");
+			}
 			Assert::IsTrue((lst.GetSize() == 0) && (lst.at(0) == NULL));
 		}
 		TEST_METHOD(InsertEmptyFirstIndexTest) {
 			List lst;
-			lst.insert(2, 0);
+			try {
+				lst.insert(2, 0);
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "List is Empty!");
+			}
 			Assert::IsTrue((lst.GetSize() == 0) && (lst.at(0) == NULL));
 		}
 		TEST_METHOD(InsertFirstIndexTest) {
@@ -125,7 +145,12 @@ namespace laba1Test
 		}
 		TEST_METHOD(RemoveEmptyFirstIndex) {
 			List lst;
-			lst.remove(0);
+			try {
+				lst.remove(0);
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "List is Empty!");
+			}
 			Assert::IsTrue((lst.GetSize() == 0) && (lst.at(0) == NULL));
 		}
 		TEST_METHOD(RemoveFirstIndex) {
@@ -136,14 +161,24 @@ namespace laba1Test
 		}
 		TEST_METHOD(RemoveunRealIndexinEmptyIndex) {
 			List lst;
-			lst.remove(2);
+			try {
+				lst.remove(2);
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "Wrong Index!");
+			}
 			Assert::IsTrue((lst.GetSize() == 0) && (lst.at(0) == NULL));
 		}
 		TEST_METHOD(RemoveunRealIndexTest) {
 			List lst;
-			lst.push_back(1);
-			lst.push_back(2);
-			lst.remove(2);
+			try {
+				lst.push_back(1);
+				lst.push_back(2);
+				lst.remove(2);
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "Wrong Index!");
+			}
 			Assert::IsTrue((lst.GetSize() == 2) && (lst.at(0) == 1) && (lst.at(1) == 2));
 		}
 		TEST_METHOD(GetSizeEmptyTest) {
@@ -165,14 +200,24 @@ namespace laba1Test
 		}
 		TEST_METHOD(SetunRealIndexTest) {
 			List lst;
-			lst.push_back(1);
-			lst.push_back(2);
-			lst.set(3, 2);
+			try {
+				lst.push_back(1);
+				lst.push_back(2);
+				lst.set(3, 2);
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "Wrong Index!");
+			}
 			Assert::IsTrue((lst.GetSize() == 2)&&(lst.at(0)==1)&&(lst.at(1)==2));
 		}
 		TEST_METHOD(SetEmptyIndexTest) {
 			List lst;
-			lst.set(3, 2);
+			try {
+				lst.set(3, 2);
+			}
+			catch (const char* warning) {
+				Assert::AreEqual(warning, "List is Empty!");
+			}
 			Assert::IsTrue((lst.GetSize() == 0) && (lst.at(0) == NULL));
 		}
 		TEST_METHOD(SetFirstIndexTest) {
