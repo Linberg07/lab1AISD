@@ -82,41 +82,50 @@ void List::push_front(int data)
 
 void List::pop_back()
 {
-	Node* current = this->head;
-	if (Size == 0) {
-		return;
-	}
-	else if (Size == 1) {
-		delete current;
-		Size--;
-		head = nullptr;
-	}
-	else {
-		for (int i = 0; i < Size - 2; i++) {
-			current = current->pNext;
+	try {
+		Node* current = this->head;
+		if (Size == 1) {
+			delete current;
+			Size--;
+			head = nullptr;
 		}
-		Node* temp = current->pNext;
-		delete temp;
-		current->pNext = nullptr;
-		Size--;
+		else if (Size > 1) {
+			for (int i = 0; i < Size - 2; i++) {
+				current = current->pNext;
+			}
+			Node* temp = current->pNext;
+			delete temp;
+			current->pNext = nullptr;
+			Size--;
+		}
+		else throw "List is Empty!";
 	}
+	catch (const char* warning) {
+		cout << warning << endl;
+		if (warning == "List is Empty!") return;
+	}
+	
 }
 
 void List::pop_front()
 {
-	Node* temp = head;
-	if (Size == 0) {
-		return;
+	try{
+		Node* temp = head;
+		if (Size == 1) {
+			delete temp;
+			Size--;
+			head = nullptr;
+		}
+		else if (Size > 1) {
+			head = head->pNext;
+			delete temp;
+			Size--;
+		}
+		else throw "List is Empty!";
 	}
-	else if (Size == 1) {
-		delete temp;
-		Size--;
-		head = nullptr;
-	}
-	else {
-		head = head->pNext;
-		delete temp;
-		Size--;
+	catch (const char* warning) {
+		cout << warning << endl;
+		if (warning == "List is Empty!") return;
 	}
 }
 
@@ -129,10 +138,10 @@ void List::clear()
 
 void List::insert(int data, size_t index)
 {
-	
+	try {
 		Node* current = this->head;
-		if (head == nullptr) return;
-		if (index > Size - 1) return;
+		if (head == nullptr) throw "List is Empty!";
+		if (index > Size - 1) throw "Wrong Index!";
 		int counter = 0;
 		while (current != nullptr) {
 			if (counter == index) {
@@ -153,7 +162,11 @@ void List::insert(int data, size_t index)
 		}
 		current->pNext = new Node(next_item);
 		Size++;
-	
+	}
+	catch (const char* warning) {
+		cout << warning << endl;
+		return;
+	}
 }
 
 int List::at(size_t index)
@@ -172,28 +185,33 @@ int List::at(size_t index)
 
 void List::remove(size_t index)
 {
-	if (head == nullptr) return;
-	if (index > Size - 1) {
-		cout << "YE";
-		return;
+	try {
+		if (head == nullptr) throw "List is Empty!";
+		if (index > Size - 1) {
+			throw "Wrong Index!";
+		}
+		else if (index == 0) pop_front();
+		else if (index == Size - 1) pop_back();
+		else {
+			Node* temp = this->head;
+			Node* current = this->head;
+			for (int i = 0; i < index; i++) {
+				temp = temp->pNext;
+			}
+
+
+			for (int i = 0; i < index - 1; i++) {
+				current = current->pNext;
+			}
+			current->pNext = temp->pNext;
+			delete temp;
+
+			Size--;
+		}
 	}
-	else if (index == 0) pop_front();
-	else if (index == Size - 1) pop_back();
-	else {
-		Node* temp = this->head;
-		Node* current = this->head;
-		for (int i = 0; i < index; i++) {
-			temp = temp->pNext;
-		}
-
-
-		for (int i = 0; i < index - 1; i++) {
-			current = current->pNext;
-		}
-		current->pNext = temp->pNext;
-		delete temp;
-
-		Size--;
+	catch (const char* warning) {
+		cout << warning << endl;
+		return;
 	}
 
 }
@@ -211,14 +229,20 @@ void List::print_to_console()
 
 void List::set(size_t index, int data)
 {
-	Node* current = this->head;
-	if (current == nullptr) return;
-	if (index > Size - 1) return;
-	for (int i = 0; i < index; i++) {
-		current = current->pNext;
+	try {
+		Node* current = this->head;
+		if (current == nullptr) throw "List is Empty!";
+		if (index > Size - 1) throw "Wrong Index!";
+		for (int i = 0; i < index; i++) {
+			current = current->pNext;
+		}
+		current->data = data;
 	}
-	current->data = data;
-}
+	catch (const char* warning) {
+		cout << warning << endl;
+		return;
+	}
+	}
 
 bool List::isEmpty()
 {
